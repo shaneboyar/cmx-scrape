@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 SELECTORS = ['FEATURED', '%23', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-with open('comics.csv', 'a') as csv_file:
+with open('../scrapes/comics.csv', 'a') as csv_file:
   writer = csv.writer(csv_file)
   writer.writerow(['series title', 'series link'])
 
@@ -46,7 +46,7 @@ for selector in SELECTORS:
         series['link'] = series_details.attrs['href'].replace('  ', '').split('?', 1)[0]
         series_list.append(series)
       # open a csv file with append, so old data will not be erased
-      with open('comics.csv', 'a') as csv_file:
+      with open('../scrapes/comics.csv', 'a') as csv_file:
         writer = csv.writer(csv_file)
         for series in series_list:
           writer.writerow([series['title'], series['link']])
